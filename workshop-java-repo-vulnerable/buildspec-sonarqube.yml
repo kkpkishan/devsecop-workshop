@@ -24,7 +24,7 @@ phases:
   build:
     commands:
       ###CodeGuru Reviewer
-      - CODEGURU_REPO_ARN=$(aws codeguru-reviewer list-repository-associations | jq '.RepositoryAssociationSummaries[] | select(.Name | startswith("desecop")).AssociationArn' | tr -d '[\"\n]')
+      - CODEGURU_REPO_ARN=$(aws codeguru-reviewer list-repository-associations | jq '.RepositoryAssociationSummaries[] | select(.Name | startswith("devsecop")).AssociationArn' | tr -d '[\"\n]')
       - echo "$CODEGURU_REPO_ARN"
       - aws codeguru-reviewer create-code-review --name mycodereview-$CODEBUILD_RESOLVED_SOURCE_VERSION --repository-association-arn $CODEGURU_REPO_ARN --type RepositoryAnalysis={RepositoryHead={BranchName=master}}
       ###SonarQube
